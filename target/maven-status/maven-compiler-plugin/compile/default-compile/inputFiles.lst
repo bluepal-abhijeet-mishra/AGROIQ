@@ -1,4 +1,0 @@
-/app/src/main/java/com/agroiq/simulator/model/SensorEvent.java
-/app/src/main/java/com/agroiq/simulator/SimulatorApplication.java
-/app/src/main/java/com/agroiq/simulator/config/KafkaTopicConfig.java
-/app/src/main/java/com/agroiq/simulator/service/AgricultureSimulatorService.java
