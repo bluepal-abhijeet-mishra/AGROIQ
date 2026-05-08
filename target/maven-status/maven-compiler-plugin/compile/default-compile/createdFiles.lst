@@ -1,0 +1,7 @@
+com/agroiq/simulator/model/SensorEvent$SensorEventBuilder.class
+com/agroiq/simulator/model/SensorEvent.class
+com/agroiq/simulator/config/KafkaTopicConfig.class
+com/agroiq/simulator/service/AgricultureSimulatorService$FarmState.class
+com/agroiq/simulator/service/AgricultureSimulatorService$AnomalyProfile.class
+com/agroiq/simulator/service/AgricultureSimulatorService.class
+com/agroiq/simulator/SimulatorApplication.class
