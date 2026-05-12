@@ -8,10 +8,42 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         spring.json.add.type.headers: false
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: agroiq-simulator-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.agroiq.simulator.model.FarmSimulationCommand
 
 app:
+  kafka:
+    topics:
+      simulator-commands: farm-simulator-commands
+      weather-data: weather.data
   simulator:
     agriculture:
       tick-rate-ms: 5000
+      stats-log-rate-ms: 60000
+      initial-farm-ids: FARM-101,FARM-102,FARM-103,FARM-104,FARM-105
+      sensors-per-farm: 3
       anomaly-probability: 0.05
-      anomaly-duration-ms: 30000
+      anomaly-duration-ms: 1800000
+  weather:
+    openweathermap:
+      base-url: https://api.openweathermap.org/data/2.5/weather
+      api-key: ${WEATHER_API_KEY:demo_key}
+      request-timeout-ms: 10000
+    ingestion:
+      poll-rate-ms: 900000
+    regions:
+      REG-NORTH:
+        lat: 47.6
+        lon: -122.3
+      REG-CENTRAL:
+        lat: 39.7
+        lon: -104.9
+      REG-SOUTH:
+        lat: 29.7
+        lon: -95.3

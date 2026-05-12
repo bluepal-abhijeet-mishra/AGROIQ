@@ -42,7 +42,7 @@ public class SensorEvent {
     private float pH;
 
     /**
-     * Epoch milliseconds
+     * ISO 8601 UTC timestamp
      */
-    private long timestamp;
+    private String timestamp;
 }
