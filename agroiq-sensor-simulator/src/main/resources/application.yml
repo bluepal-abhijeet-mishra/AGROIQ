@@ -17,11 +17,22 @@ spring:
         spring.json.trusted.packages: "*"
         spring.json.value.default.type: com.agroiq.simulator.model.FarmSimulationCommand
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
 app:
   kafka:
     topics:
       simulator-commands: farm-simulator-commands
       weather-data: weather.data
+      satellite-data: satellite.data
   simulator:
     agriculture:
       tick-rate-ms: 5000
@@ -30,10 +41,16 @@ app:
       sensors-per-farm: 3
       anomaly-probability: 0.05
       anomaly-duration-ms: 1800000
+    satellite:
+      scan-rate-ms: 21600000
+      stats-log-rate-ms: 300000
+      default-region-id: REG-NORTH
+      crop-stress-probability: 0.08
+      ndvi-stress-threshold: 0.35
   weather:
     openweathermap:
       base-url: https://api.openweathermap.org/data/2.5/weather
-      api-key: ${WEATHER_API_KEY:demo_key}
+      api-key: ${WEATHER_API_KEY:651f48ef3fffe0952e0ae0fd599b9c16}
       request-timeout-ms: 10000
     ingestion:
       poll-rate-ms: 900000

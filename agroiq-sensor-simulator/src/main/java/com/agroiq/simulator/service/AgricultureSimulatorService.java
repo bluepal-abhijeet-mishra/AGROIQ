@@ -30,6 +30,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class AgricultureSimulatorService {
 
     private final KafkaTemplate<String, SensorEvent> kafkaTemplate;
+    private final FarmCatalogService farmCatalogService;
 
     @Value("${app.simulator.agriculture.initial-farm-ids:FARM-101,FARM-102,FARM-103,FARM-104,FARM-105}")
     private String initialFarmIds;
@@ -165,6 +166,7 @@ public class AgricultureSimulatorService {
         FarmState existingState = farmStates.putIfAbsent(farmId, newState);
 
         if (existingState == null) {
+            farmCatalogService.registerFarm(farmId);
             log.info("Registered farm {} for simulation with {} sensors", farmId, newState.sensorIds.size());
         } else {
             log.info("Farm {} is already registered for simulation", farmId);
